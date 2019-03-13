@@ -1,0 +1,40 @@
+
+
+
+cd
+/Users/mcclayac/IdeaProjects/javaservice/out/production/java8service
+
+
+
+# Java Home
+Anthonys-MacBook-Pro:apache-ant-1.10.5 mcclayac$ /usr/libexec/java_home
+/Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home
+Anthonys-MacBook-Pro:apache-ant-1.10.5 mcclayac$ cd /Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home
+
+
+#  any Version
+Anthonys-MacBook-Pro:~ mcclayac$ ant -version
+Apache Ant(TM) version 1.10.5 compiled on July 10 2018
+
+
+# Pull the Oracle Java JRE Image - must be logged into dockerhub
+$ docker pull store/oracle/serverjre:8
+
+
+# Build the docker image
+$ docker build . -t java8service:v0.0.1
+
+# RUn the docker image name = javaserver
+$ docker run -d --name java8service -p 8181:8181 java8service:v0.0.1
+
+
+#start the Service
+$ docker-compose up -d
+
+
+# Check the runing service
+$  docker-compose ps
+           Name                   Command         State           Ports
+--------------------------------------------------------------------------------
+java8service_javaservice_1   java JavaWebServer   Up      0.0.0.0:8181->8181/tcp
+
