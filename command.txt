@@ -23,6 +23,11 @@ $ docker pull store/oracle/serverjre:8
 
 # Build the docker image
 $ docker build . -t java8service:v0.0.1
+$ docker build . -t mcclayac/java8service9191:v0.0.3
+
+# push the image docker push
+$ docker push mcclayac/java8service9191:v0.0.3
+
 
 # RUn the docker image name = javaserver
 $ docker run -d --name java8service -p 8181:8181 java8service:v0.0.1
