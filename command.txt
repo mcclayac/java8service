@@ -23,7 +23,7 @@ $ docker pull store/oracle/serverjre:8
 
 # Build the docker image
 $ docker build . -t java8service:v0.0.1
-$ docker build . -t mcclayac/java8service9191:v0.0.3
+$ docker build . -t mcclayac/java8service9191:v0.0.4
 
 # push the image docker push
 $ docker push mcclayac/java8service9191:v0.0.3
@@ -43,3 +43,10 @@ $  docker-compose ps
 --------------------------------------------------------------------------------
 java8service_javaservice_1   java JavaWebServer   Up      0.0.0.0:8181->8181/tcp
 
+
+# Build for ECR
+$ docker build . -t java8service:v0.0.5
+
+$ docker build . -t java8service:v0.0.5
+$ docker tag java8service:v0.0.5 722234550817.dkr.ecr.us-east-2.amazonaws.com/java8service:v0.0.5
+$ docker push 722234550817.dkr.ecr.us-east-2.amazonaws.com/java8service:v0.0.5
