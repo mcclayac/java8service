@@ -1,3 +1,5 @@
+package com.bigman.maven;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,8 +9,8 @@ import java.net.Socket;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class JavaWebServer
-{
+public class JavaWebServer {
+
 
     private static final int fNumberOfThreads = 100;
     private static final Executor fThreadPool = Executors.newFixedThreadPool(fNumberOfThreads);

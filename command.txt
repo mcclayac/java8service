@@ -41,7 +41,7 @@ $ docker-compose up -d
 $  docker-compose ps
            Name                   Command         State           Ports
 --------------------------------------------------------------------------------
-java8service_javaservice_1   java JavaWebServer   Up      0.0.0.0:8181->8181/tcp
+java8service_javaservice_1   java com.bigman.maven.JavaWebServer   Up      0.0.0.0:8181->8181/tcp
 
 
 # Build for ECR
@@ -50,3 +50,40 @@ $ docker build . -t java8service:v0.0.5
 $ docker build . -t java8service:v0.0.5
 $ docker tag java8service:v0.0.5 722234550817.dkr.ecr.us-east-2.amazonaws.com/java8service:v0.0.5
 $ docker push 722234550817.dkr.ecr.us-east-2.amazonaws.com/java8service:v0.0.5
+
+docker tag java8service:0.1.1
+
+# Pom Integration
+# Pom File
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.bigman.maven</groupId>
+    <artifactId>java8service</artifactId>
+    <version>0.1.1</version>
+    <packaging>jar</packaging>
+</project>
+
+# Build jar file
+$ mvn package
+
+# Run Jar file - test code
+$ java -cp ./target/java8service-0.1.1.jar com.bigman.maven.JavaWebServer
+
+# Build Docker Service
+#  CMD ["java", "-cp", "./java8service-0.1.1.jar", "com.bigman.maven.JavaWebServer"]
+$ docker build . -t java8service:0.1.1
+
+# Test The Built Server
+$ docker run -d --name java_webserver -p 9191:9191 java8service:0.1.1
+
+
+$ docker image tag java8service:0.1.1 mcclayac/java8service:0.1.1
+$ docker push  mcclayac/java8service:0.1.1
+
+$ docker image tag java8service:0.1.1 722234550817.dkr.ecr.us-east-2.amazonaws.com/java8service:0.1.1
+$ docker push  722234550817.dkr.ecr.us-east-2.amazonaws.com/java8service:0.1.1
+
+722234550817.dkr.ecr.us-east-2.amazonaws.com/java8service:
